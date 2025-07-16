@@ -54,6 +54,7 @@ A playful little esolang where commands like rizz, yeet, and sus control a numbe
 
 # Example snippet
 
+```brainrot
 no cap
 drip
 rizz
@@ -61,14 +62,17 @@ vibe
 skibidi
 gyatt
 unvibe
+```
 
-Expected output:
+**Expected output:**
 
+```
 6
 5
 4
 3
 2
 1
+```
 
 ---
