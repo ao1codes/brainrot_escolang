@@ -1,8 +1,6 @@
 # 🧠 ao1codes' Brainrot
 
-**A Gen Z slang esoteric programming language that vibes on a single integer accumulator.
-
-Brainrot is a playful little esolang where commands like rizz, yeet, and sus control a number. Write loops, print values, and mess with the accumulator to make weird, fun programs.
+A playful little esolang where commands like rizz, yeet, and sus control a number. Write loops, print values, and mess with the accumulator to make weird, fun programs.
 
 ---
 
