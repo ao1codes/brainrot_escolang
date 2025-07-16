@@ -19,8 +19,8 @@ A playful little esolang where commands like rizz, yeet, and sus control a numbe
 
 1. Clone this repo
    ```bash
-   git clone https://github.com/ao1codes/brainrot_escolang.git
-   cd brainrot_escolang
+   git clone https://github.com/ao1codes/brainrot_esolang.git
+   cd brainrot_esolang
    ```
 
 2. Run a Brainrot program with Python 3
