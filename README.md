@@ -37,19 +37,18 @@ A playful little esolang where commands like rizz, yeet, and sus control a numbe
 
 # Commands Cheat Sheet
 
-Command    - Effect
-rizz       - Increment accumulator by 1
-gyatt      - Decrement accumulator by 1
-drip       - Increment accumulator by 5
-npc        - Decrement accumulator by 5
-yeet       - Multiply accumulator by 2
-cringe     - Integer divide accumulator by 2 if not zero
-skibidi    - Print current accumulator value
-no cap     - Reset accumulator to 0
-sus        - If accumulator is 0, skip next command
-vibe       - Start loop (while accumulator > 0)
-unvibe     - End loop (jump back if accumulator > 0)
-mid        - No-op (comment / ignore)
+- `rizz` — Increment accumulator by 1
+- `gyatt` — Decrement accumulator by 1
+- `drip` — Increment accumulator by 5
+- `npc` — Decrement accumulator by 5
+- `yeet` — Multiply accumulator by 2
+- `cringe` — Integer divide accumulator by 2 if not zero
+- `skibidi` — Print current accumulator value
+- `no cap` — Reset accumulator to 0
+- `sus` — If accumulator is 0, skip next command
+- `vibe` — Start loop (while accumulator > 0)
+- `unvibe` — End loop (jump back if accumulator > 0)
+- `mid` — No-op (comment / ignore)
 
 ---
 
