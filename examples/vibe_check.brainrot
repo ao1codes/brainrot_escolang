@@ -1,0 +1,26 @@
+# start fresh
+no cap          # acc = 0
+
+# get to 10 quickly
+lit             # acc += 10
+
+# save acc on stack
+flex            # acc = acc^2 (100)
+spill           # input a number, replace acc
+
+# start loop: while acc > 0
+vibe
+  skibidi       # print acc
+  clapback      # pop from stack to acc (should restore 100)
+  mid           # no-op, just chillin
+  npc           # acc -= 5
+  sus           # if acc == 0, skip next drip
+  drip          # add 5 only if acc != 0
+  gyatt         # acc -= 1
+unvibe
+
+# print final acc (should be 0 or near)
+skibidi
+
+# done
+mid
