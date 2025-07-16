@@ -1,6 +1,6 @@
 # 🧠 ao1codes' Brainrot Esolang
 
-A playful little esolang where commands like rizz, yeet, and sus control a number. Write loops, print values, and mess with the accumulator to make weird, fun programs.
+A playful little esolang where commands like rizz, yeet, and sus control a number. Write loops, print values, and mess with the accumulator to make fun programs.
 
 ---
 
