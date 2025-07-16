@@ -23,7 +23,7 @@ A playful little esolang where commands like rizz, yeet, and sus control a numbe
    cd brainrot_escolang
    ```
 
-2. Run your Brainrot program with Python 3
+2. Run a Brainrot program with Python 3
    ```bash
     python3 brainrot.py examples/hello_world.brainrot
    ```
