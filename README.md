@@ -25,12 +25,12 @@ A playful little esolang where commands like rizz, yeet, and sus control a numbe
 
 2. Run your Brainrot program with Python 3
    ```bash
-    python3 brainrot.py examples/hello\_world.brainrot
+    python3 brainrot.py examples/hello_world.brainrot
    ```
 
 3. Add --debug to trace commands
    ```bash
-    python3 brainrot.py --debug examples/hello\_world.brainrot
+    python3 brainrot.py --debug examples/hello_world.brainrot
    ```
    
 ---
