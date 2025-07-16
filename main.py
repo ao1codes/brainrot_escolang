@@ -29,17 +29,11 @@ def parse_lines(lines):
 
 class Interpreter:
     def __init__(self, debug=False):
-        # single main accumulator
         self.acc = 0
-        # program counter
         self.pc = 0
-        # loaded program: list of (line_no, tokens)
         self.lines = []
-        # loop stack (pc indexes)
         self.loop_stack = []
-        # generic stack
         self.stack = []
-        # variables
         self.vars = {}
         self.debug = debug
 
@@ -62,7 +56,6 @@ class Interpreter:
             except BrainrotError as e:
                 print(f"Error at line {line_no}: {e}", file=sys.stderr)
                 sys.exit(1)
-            # only auto-advance if execute() didn't move pc
             if self.pc == old_pc:
                 self.pc += 1
 
@@ -83,7 +76,8 @@ class Interpreter:
         elif cmd == 'yeet':
             self.acc *= 2
         elif cmd == 'flex':
-            self.acc = self.acc * self.acc
+            # push acc squared to stack (do NOT modify acc)
+            self.stack.append(self.acc * self.acc)
         elif cmd == 'cringe':
             if self.acc != 0:
                 self.acc //= 2
@@ -91,17 +85,21 @@ class Interpreter:
         # Stack operations
         elif cmd == 'fam':            # push acc to stack
             self.stack.append(self.acc)
+        elif cmd == 'peekback':      # read top of stack without popping
+            if not self.stack:
+                raise BrainrotError("Stack is empty")
+            self.acc = self.stack[-1]
         elif cmd == 'clapback':      # pop from stack to acc
             if not self.stack:
                 raise BrainrotError("Stack is empty")
             self.acc = self.stack.pop()
 
         # Variables
-        elif cmd == 'set':           # set var to acc
+        elif cmd == 'set':
             if len(args) != 1:
                 raise BrainrotError("Usage: set <varname>")
             self.vars[args[0]] = self.acc
-        elif cmd == 'get':           # load var into acc
+        elif cmd == 'get':
             if len(args) != 1:
                 raise BrainrotError("Usage: get <varname>")
             v = args[0]
@@ -110,7 +108,7 @@ class Interpreter:
             self.acc = self.vars[v]
 
         # I/O
-        elif cmd == 'spill':         # prompt user for integer
+        elif cmd == 'spill':
             val = input("spill> ")
             try:
                 self.acc = int(val)
@@ -123,27 +121,23 @@ class Interpreter:
         elif cmd == 'no' and args == ['cap']:
             self.acc = 0
         elif cmd == 'sus':
-            # skip next if acc == 0
             if self.acc == 0:
                 self.pc += 2
         elif cmd == 'suspect':
-            # skip next if acc > 0
             if self.acc > 0:
                 self.pc += 2
 
         elif cmd == 'vibe':
-            # start loop if acc > 0
             if self.acc > 0:
                 self.loop_stack.append(self.pc)
             else:
-                # skip to matching unvibe
                 depth = 1
                 while depth and self.pc < len(self.lines) - 1:
                     self.pc += 1
-                    _, tokens = self.lines[self.pc]
-                    if tokens[0] == 'vibe':
+                    _, toks = self.lines[self.pc]
+                    if toks[0] == 'vibe':
                         depth += 1
-                    elif tokens[0] == 'unvibe':
+                    elif toks[0] == 'unvibe':
                         depth -= 1
                 if depth:
                     raise BrainrotError("Unmatched 'vibe'")
@@ -152,7 +146,6 @@ class Interpreter:
                 raise BrainrotError("Unmatched 'unvibe'")
             start = self.loop_stack[-1]
             if self.acc > 0:
-                # jump to first command inside loop
                 self.pc = start + 1
             else:
                 self.loop_stack.pop()
@@ -162,12 +155,9 @@ class Interpreter:
             if len(args) != 1:
                 raise BrainrotError("Usage: load <filename>")
             filename = args[0]
-            prev_lines = self.lines
-            prev_pc = self.pc
+            prev_lines, prev_pc = self.lines, self.pc
             self.load(filename)
-            # after include, resume original
-            self.lines = prev_lines
-            self.pc = prev_pc
+            self.lines, self.pc = prev_lines, prev_pc
 
         # Meta
         elif cmd == 'help':
@@ -179,7 +169,6 @@ class Interpreter:
         elif cmd == 'mid':
             pass
 
-        # Unknown
         else:
             raise BrainrotError(f"Unknown command '{cmd}'")
 
@@ -193,8 +182,9 @@ class Interpreter:
         print("- slaps      : -10")
         print("- yeet       : *2")
         print("- cringe     : //2")
-        print("- flex       : square")
+        print("- flex       : push acc² to stack")
         print("- fam        : push acc")
+        print("- peekback   : read top of stack")
         print("- clapback   : pop to acc")
         print("- set <v>    : var=v")
         print("- get <v>    : load var")
@@ -211,9 +201,7 @@ class Interpreter:
 
 if __name__ == '__main__':
     import argparse
-    parser = argparse.ArgumentParser(
-        description='Brainrot esolang interpreter (Gen Z slang edition)'
-    )
+    parser = argparse.ArgumentParser(description='Brainrot esolang interpreter')
     parser.add_argument('file', nargs='?', help='Path to .brainrot source')
     parser.add_argument('--debug', action='store_true', help='Trace execution')
     args = parser.parse_args()
@@ -228,9 +216,10 @@ if __name__ == '__main__':
                 line = input(">>> ")
                 if not line.strip():
                     continue
-                interp.lines = [(0, line.split())]
+                toks = line.split()
+                interp.lines = [(0, toks)]
                 interp.pc = 0
-                interp.execute(interp.lines[0][1][0], interp.lines[0][1][1:])
+                interp.execute(toks[0], toks[1:])
         except KeyboardInterrupt:
             print("\nGoodbye.")
         sys.exit(0)
