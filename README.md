@@ -37,18 +37,28 @@ A playful little esolang where commands like rizz, yeet, and sus control a numbe
 
 # Commands Cheat Sheet
 
-- `rizz` — Increment accumulator by 1
-- `gyatt` — Decrement accumulator by 1
-- `drip` — Increment accumulator by 5
-- `npc` — Decrement accumulator by 5
-- `yeet` — Multiply accumulator by 2
-- `cringe` — Integer divide accumulator by 2 if not zero
-- `skibidi` — Print current accumulator value
-- `no cap` — Reset accumulator to 0
-- `sus` — If accumulator is 0, skip next command
-- `vibe` — Start loop (while accumulator > 0)
-- `unvibe` — End loop (jump back if accumulator > 0)
-- `mid` — No-op (comment / ignore)
+- `rizz` — Increment accumulator by 1  
+- `gyatt` — Decrement accumulator by 1  
+- `drip` — Increment accumulator by 5  
+- `npc` — Decrement accumulator by 5  
+- `lit` — Increment accumulator by 10  
+- `slaps` — Decrement accumulator by 10  
+- `yeet` — Multiply accumulator by 2  
+- `flex` — Push accumulator squared onto stack (does NOT modify accumulator)  
+- `fam` — Push accumulator onto stack  
+- `clapback` — Pop from stack into accumulator  
+- `cringe` — Integer divide accumulator by 2 if not zero  
+- `spill` — Prompt user for integer input and replace accumulator  
+- `skibidi` — Print current accumulator value  
+- `no cap` — Reset accumulator to 0  
+- `sus` — If accumulator is 0, skip next command  
+- `suspect` — If accumulator is greater than 0, skip next command  
+- `vibe` — Start loop (while accumulator > 0)  
+- `unvibe` — End loop (jump back if accumulator > 0)  
+- `load <filename>` — Include and run another Brainrot file  
+- `set <varname>` — Store accumulator value in a variable  
+- `get <varname>` — Load variable value into accumulator  
+- `mid` — No-op (comment / ignore)  
 
 ---
 
