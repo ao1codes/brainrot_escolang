@@ -9,11 +9,14 @@ app = Flask(__name__)
 def index():
     output = ""
     code = ""
+
     if request.method == "POST":
-        code = request.form["code"]
+        code = request.form.get("code", "")  # Safer than request.form["code"]
         temp_filename = f"temp_{uuid.uuid4().hex}.brainrot"
+
         with open(temp_filename, "w") as f:
             f.write(code)
+
         try:
             output = subprocess.check_output(
                 ["python", "main.py", temp_filename],
@@ -26,7 +29,8 @@ def index():
             output = "❌ Execution timed out."
         finally:
             os.remove(temp_filename)
-    return render_template("index.html", output=output, code=code)
+
+    return render_template("index.html", code=code, output=output)
 
 if __name__ == "__main__":
     # Run Flask server on port 8084

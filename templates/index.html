@@ -14,22 +14,23 @@
       display: flex; flex-direction: column; min-height: 100vh;
     }
     header {
-      position: relative;
       background: #111827;
       color: #f9fafb;
-      text-align: center;
       padding: 1rem 2rem;
     }
-    header h1 {
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .header-content h1 {
       margin: 0;
       font-size: 1.5rem;
       font-weight: 700;
     }
     .docs-btn {
-      position: absolute;
-      top: 50%;
-      right: 1.5rem;
-      transform: translateY(-50%);
       background: #6b7280;
       color: #fff;
       border: none;
@@ -106,17 +107,32 @@
     }
 
     @media (max-width: 600px) {
-      header h1 { font-size: 1.25rem; }
-      .docs-btn { top: 1rem; right: 1rem; transform: none; }
-      textarea { min-height: 150px; }
-      main { margin: 1rem; }
+      .header-content {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .docs-btn {
+        width: 100%;
+        max-width: 300px;
+      }
+      header h1 {
+        font-size: 1.25rem;
+      }
+      textarea {
+        min-height: 150px;
+      }
+      main {
+        margin: 1rem;
+      }
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>Brainrot Esolang Interpreter</h1>
-    <button class="docs-btn" onclick="showDocs()">Documentation</button>
+    <div class="header-content">
+      <h1>Brainrot Esolang Interpreter</h1>
+      <button class="docs-btn" onclick="showDocs()">Documentation</button>
+    </div>
   </header>
 
   <main>
@@ -145,33 +161,33 @@ skibidi  # prints 2
     <div id="docsContent" onclick="event.stopPropagation()">
       <h2>Brainrot Commands</h2>
       <ul>
-        <li><code>rizz</code> – +1</li>
-        <li><code>gyatt</code> – -1</li>
-        <li><code>drip</code> – +5</li>
-        <li><code>npc</code> – -5</li>
-        <li><code>lit</code> – +10</li>
-        <li><code>slaps</code> – -10</li>
-        <li><code>yeet</code> – ×2</li>
-        <li><code>cringe</code> – ÷2 (integer)</li>
-        <li><code>flex</code> – push acc²</li>
-        <li><code>fam</code> – push acc</li>
-        <li><code>peekback</code> – peek stack</li>
-        <li><code>clapback</code> – pop stack to acc</li>
-        <li><code>set &lt;v&gt;</code> – var = acc</li>
-        <li><code>get &lt;v&gt;</code> – acc = var</li>
-        <li><code>spill</code> – input integer</li>
-        <li><code>skibidi</code> – print acc</li>
-        <li><code>no cap</code> – acc = 0</li>
-        <li><code>sus</code> – skip next if acc = 0</li>
-        <li><code>suspect</code> – skip next if acc > 0</li>
-        <li><code>vibe</code> – start loop</li>
-        <li><code>unvibe</code> – end loop</li>
-        <li><code>func &lt;name&gt;</code> – define function</li>
-        <li><code>endfunc</code> – end function</li>
-        <li><code>call &lt;name&gt;</code> – call function</li>
-        <li><code>return</code> – return from function</li>
-        <li><code>load &lt;file&gt;</code> – include file</li>
-        <li><code>mid</code> – no-op</li>
+        <li><code>rizz</code> : +1</li>
+        <li><code>gyatt</code> : -1</li>
+        <li><code>drip</code> : +5</li>
+        <li><code>npc</code> : -5</li>
+        <li><code>lit</code> : +10</li>
+        <li><code>slaps</code> : -10</li>
+        <li><code>yeet</code> : ×2</li>
+        <li><code>cringe</code> : ÷2 (integer)</li>
+        <li><code>flex</code> : push acc²</li>
+        <li><code>fam</code> : push acc</li>
+        <li><code>peekback</code> : peek stack</li>
+        <li><code>clapback</code> : pop stack to acc</li>
+        <li><code>set &lt;v&gt;</code> : var = acc</li>
+        <li><code>get &lt;v&gt;</code> : acc = var</li>
+        <li><code>spill</code> : input integer</li>
+        <li><code>skibidi</code> : print acc</li>
+        <li><code>no cap</code> : acc = 0</li>
+        <li><code>sus</code> : skip next if acc = 0</li>
+        <li><code>suspect</code> : skip next if acc > 0</li>
+        <li><code>vibe</code> : start loop</li>
+        <li><code>unvibe</code> : end loop</li>
+        <li><code>func &lt;name&gt;</code> : define function</li>
+        <li><code>endfunc</code> : end function</li>
+        <li><code>call &lt;name&gt;</code> : call function</li>
+        <li><code>return</code> : return from function</li>
+        <li><code>load &lt;file&gt;</code> : include file</li>
+        <li><code>mid</code> : no-op</li>
       </ul>
     </div>
   </div>
