@@ -55,6 +55,10 @@ A playful little esolang where commands like rizz, yeet, and sus control a numbe
 - `suspect` — If accumulator is greater than 0, skip next command  
 - `vibe` — Start loop (while accumulator > 0)  
 - `unvibe` — End loop (jump back if accumulator > 0)  
+- `func <name>` - Define function 
+- `endfunc` - End function 
+- `call <name>` - Call function 
+- `return` - Return from function
 - `load <filename>` — Include and run another Brainrot file  
 - `set <varname>` — Store accumulator value in a variable  
 - `get <varname>` — Load variable value into accumulator  
